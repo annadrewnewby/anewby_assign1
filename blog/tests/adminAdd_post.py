@@ -41,7 +41,6 @@ class Blog_ATS(unittest.TestCase):
         elem = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/form/div/div/input[1]").click()
         time.sleep(5)
         
-
     def tearDown(self):
         self.driver.close()
 

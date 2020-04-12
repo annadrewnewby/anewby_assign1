@@ -8,7 +8,8 @@ class Blog_ATS(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
 
-    def test_editPost(self):
+    def test_admin_deletePost(self):
+        """ Log in to admin panel """
         user = "instructor"
         pwd = "maverick1a"
         driver = self.driver
@@ -19,27 +20,23 @@ class Blog_ATS(unittest.TestCase):
         elem = driver.find_element_by_id("id_password")
         elem.send_keys(pwd)
         elem.send_keys(Keys.RETURN)
-        driver.get("http://127.0.0.1:8000")
         assert "Logged In"
+        
+        """ Edit the post """
+        elem = driver.find_element_by_xpath("/html/body/div/div[2]/div[1]/div[2]/table/tbody/tr/td[2]/a").click()
         time.sleep(2)
-        elem = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[1]/h2/a").click()
-        time.sleep(2)
-        elem = driver.find_element_by_xpath("/html/body/div[2]/div/div/div/a").click()
+        elem = driver.find_element_by_xpath("/html/body/div/div[3]/div/div/form/div[2]/table/tbody/tr[12]/th/a").click()
         time.sleep(2)
         elem = driver.find_element_by_id("id_title")
-        elem.send_keys(Keys.CONTROL, "a")
-        elem.send_keys("This title has been changed with selenium")
+        elem.clear()
+        elem.send_keys("Title changed with Selenium Admin Panel")
         elem = driver.find_element_by_id("id_text")
-        elem.send_keys(Keys.CONTROL, "a")
-        elem.send_keys("This description has been changed with selenium")
+        elem.clear()
+        elem.send_keys("Post Text changed with Selenium Admin Panel")
         time.sleep(2)
-        elem = driver.find_element_by_xpath("/html/body/div[2]/div/div/form/button").click()
+        elem = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/form/div/div/input[1]").click()
         time.sleep(2)
-        assert "Saved"
-        driver.get("http://127.0.0.1:8000")
-        time.sleep(1)
-        driver.get("http://127.0.0.1:8000")
-        
+
     def tearDown(self):
         self.driver.close()
 
