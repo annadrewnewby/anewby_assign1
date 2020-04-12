@@ -9,10 +9,10 @@ class Blog_ATS(unittest.TestCase):
         self.driver = webdriver.Chrome()
 
     def test_admin_addUser(self):
+        """ Sign In """
         user = "instructor"
         pwd = "maverick1a"
         driver = self.driver
-        driver.maximize_window()
         driver.get("http://127.0.0.1:8000/admin")
         elem = driver.find_element_by_id("id_username")
         elem.send_keys(user)
@@ -21,12 +21,14 @@ class Blog_ATS(unittest.TestCase):
         elem.send_keys(Keys.RETURN)
         driver.get("http://127.0.0.1:8000/admin")
         assert "Logged In"
+
+        """ Add user """
         time.sleep(2)
         elem = driver.find_element_by_xpath("/html/body/div/div[2]/div[1]/div[1]/table/tbody/tr[2]/td[1]/a").click()
         time.sleep(2)
         elem = driver.find_element_by_id("id_username")
         elem.send_keys(Keys.CONTROL, "a")
-        elem.send_keys("seleniumuser")
+        elem.send_keys("seleniumuser2")
         time.sleep(2)
         elem = driver.find_element_by_id("id_password1")
         elem.send_keys(Keys.CONTROL, "a")

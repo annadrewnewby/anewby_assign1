@@ -9,10 +9,10 @@ class Blog_ATS(unittest.TestCase):
         self.driver = webdriver.Chrome()
 
     def test_admin_addPost(self):
+        """ Log in """
         user = "instructor"
         pwd = "maverick1a"
         driver = self.driver
-        driver.maximize_window()
         driver.get("http://127.0.0.1:8000/admin")
         elem = driver.find_element_by_id("id_username")
         elem.send_keys(user)
@@ -21,6 +21,8 @@ class Blog_ATS(unittest.TestCase):
         elem.send_keys(Keys.RETURN)
         driver.get("http://127.0.0.1:8000/admin")
         assert "Logged In"
+
+        """ Add post """
         time.sleep(2)
         elem = driver.find_element_by_xpath("/html/body/div/div[2]/div[1]/div[2]/table/tbody/tr/td[1]/a").click()
         time.sleep(2)
@@ -28,10 +30,10 @@ class Blog_ATS(unittest.TestCase):
         elem.send_keys(Keys.ARROW_DOWN, Keys.ENTER)
         time.sleep(2)
         elem = driver.find_element_by_id("id_title")
-        elem.send_keys("This is a selenium test post as administrator title")
+        elem.send_keys("This is a selenium test post as admin title")
         time.sleep(2)
         elem = driver.find_element_by_id("id_text")
-        elem.send_keys("This is a selenium test post as administrator description")
+        elem.send_keys("This is a selenium test post as admin description")
         time.sleep(2)
         elem = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/form/div/fieldset/div[4]/div/p/span[1]/a[1]").click()
         elem = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/form/div/fieldset/div[4]/div/p/span[2]/a[1]").click()

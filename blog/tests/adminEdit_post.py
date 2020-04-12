@@ -13,7 +13,6 @@ class Blog_ATS(unittest.TestCase):
         user = "instructor"
         pwd = "maverick1a"
         driver = self.driver
-        driver.maximize_window()
         driver.get("http://127.0.0.1:8000/admin")
         elem = driver.find_element_by_id("id_username")
         elem.send_keys(user)
@@ -25,7 +24,7 @@ class Blog_ATS(unittest.TestCase):
         """ Edit the post """
         elem = driver.find_element_by_xpath("/html/body/div/div[2]/div[1]/div[2]/table/tbody/tr/td[2]/a").click()
         time.sleep(2)
-        elem = driver.find_element_by_xpath("/html/body/div/div[3]/div/div/form/div[2]/table/tbody/tr[12]/th/a").click()
+        elem = driver.find_element_by_xpath("/html/body/div/div[3]/div/div/form/div[2]/table/tbody/tr[19]/th/a").click()
         time.sleep(2)
         elem = driver.find_element_by_id("id_title")
         elem.clear()

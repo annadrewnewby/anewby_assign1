@@ -9,6 +9,7 @@ class Blog_ATS(unittest.TestCase):
         self.driver = webdriver.Chrome()
 
     def test_addPost(self):
+        """ Sign In """
         user = "instructor"
         pwd = "maverick1a"
         driver = self.driver
@@ -22,6 +23,8 @@ class Blog_ATS(unittest.TestCase):
         driver.get("http://127.0.0.1:8000")
         assert "Logged In"
         time.sleep(2)
+
+        """ Add Post """
         elem = driver.find_element_by_xpath("/html/body/div[1]/a/span").click()
         time.sleep(2)
         elem = driver.find_element_by_id("id_title")
